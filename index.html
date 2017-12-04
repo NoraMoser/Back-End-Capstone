@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Off the Shelf</title>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+    </head>
+
+    <body>
+
+        <div ng-app="LibraryApp">
+            <div ng-view>
+                
+            </div>
+        </div>
+
+        
+        <script src="./lib/node_modules/jquery/dist/jquery.min.js"></script><script src="./lib/node_modules/angular/angular.min.js"></script>
+        <script src="./lib/node_modules/angular-route/angular-route.min.js"></script>
+
+        <script src="./app/app.js"></script>
+
+         <!-- factories -->
+        <script src="app/factories/library.factory.js"></script>
+        <script src="app/factories/user.factory.js"></script> 
+
+        <!-- controllers -->
+        <script src="app/controllers/booklists.ctrl.js"></script>
+        <script src="app/controllers/form.ctrl.js"></script>
+        <script src="app/controllers/homepage.ctrl.js"></script>
+        <script src="app/controllers/initial.ctrl.js"></script>
+        <script src="app/controllers/questionnaire.ctrl.js"></script>
+        <script src="app/controllers/search.ctrl.js"></script>
+        <script src="app/controllers/statistics.ctrl.js"></script>
+        <script src="app/controllers/to-buy.ctrl.js"></script>
+        
+        
+        
+
+
+    </body>
+
+</html>
