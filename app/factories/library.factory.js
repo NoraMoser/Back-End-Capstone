@@ -1,1 +1,24 @@
 // submit call to rails api to get questions/answers post responses and call to goodreads on save send what user wants to save to rails
+'use strict';
+
+console.log('library.factory');
+
+app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsCreds){
+    
+    
+        const getRailsDatabase = function(user){
+            console.log('hello');
+            return $q( (resolve, reject) => {
+                $http.get(`${RailsCreds.databaseURL}/answers.json`)
+                .then((itemObject) => {
+                    console.log('itemObject', itemObject);
+                    let itemCollection = itemObject.data;
+                    resolve(itemCollection);
+                    })
+                    .catch((error) => {
+                        reject(error);
+                    });
+            });
+        };
+        return {getRailsDatabase};
+    });

@@ -1,1 +1,3 @@
 // Logic to be able to add books from the stats page to your to buy list and delete the books if you want...
+
+console.log('to-buy.ctrl');

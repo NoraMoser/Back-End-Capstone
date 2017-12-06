@@ -1,1 +1,3 @@
 // Logic where stats show up by grade- most popular recommended books, most highly rated by grade, etc...
+
+console.log('statistics.ctrl');
