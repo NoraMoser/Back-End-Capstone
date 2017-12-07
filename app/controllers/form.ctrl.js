@@ -3,7 +3,7 @@
 
 console.log('form.ctrl');
 
-app.controller('formCtrl', function(userFactory, $routeParams, $scope) {
+app.controller('formCtrl', function(userFactory, $routeParams, $scope, $window) {
 
     
 //This is the object that the values are being pushed to and sent to the database
@@ -38,6 +38,8 @@ app.controller('formCtrl', function(userFactory, $routeParams, $scope) {
 
         //This sends it to the database using post in the user factory
         userFactory.createNewUser($scope.user);
+
+        $window.location.href = "#!/";
         
     };
 

@@ -8,7 +8,11 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
     
         const getRailsDatabase = function(user){
             return $q( (resolve, reject) => {
-                $http.get(`${RailsCreds.databaseURL}/answers.json`)
+                $http.get(`${RailsCreds.databaseURL}/answers`, {headers: 
+                    {
+                        Authorization: `${userFactory.getTokenBack()}`,
+                    },
+                })
                 .then((itemObject) => {
                     let itemCollection = itemObject.data;
                     resolve(itemCollection);

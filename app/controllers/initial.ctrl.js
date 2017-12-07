@@ -3,11 +3,11 @@
 
 console.log('initial.ctrl');
 
-app.controller('initialCtrl', function($routeParams, $scope, userFactory) {
+app.controller('initialCtrl', function($routeParams, $scope, userFactory, $window) {
 
     $scope.user = {
         email: "",
-        password: ""
+        password: "",
     };
 
     $scope.login = function() {
@@ -19,11 +19,13 @@ app.controller('initialCtrl', function($routeParams, $scope, userFactory) {
         userFactory.getToken($scope.user)
         .then(auth_token => {
             $scope.user.auth_token = auth_token;
-            console.log('$scope.user', $scope.user);
+            console.log('auth_token', auth_token);
+            if(auth_token) {
+                $window.location.href = "#!/questionnaire";
+                }else{
+                    alert('you are not a user!');
+                }
         });
-
-
-
 
     };
 });
