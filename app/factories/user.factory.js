@@ -14,5 +14,19 @@ app.factory("userFactory", function(RailsCreds, $q, $http){
             let errorMessage = error.message;
         });
     };
-    return {createNewUser};
+    var auth_token = "";
+
+    const getToken = function(user) {
+        //get method 
+        return $q (( resolve, reject) => {
+            $http.post(`${RailsCreds.databaseURL}/authenticate`, user)
+            .then((data => resolve(data.data.auth_token)));
+        });
+
+
+    };
+
+
+    
+    return {createNewUser, getToken};
 });

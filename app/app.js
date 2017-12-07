@@ -13,6 +13,7 @@ app.config(($routeProvider) => {
     .when('/questionnaire', {
         templateUrl: 'partials/questionnaire.html',
         controller: 'questionnaireCtrl'
+        // resolve: {isAuth}
     })
 
     .when('/form', {
