@@ -8,7 +8,7 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
     
         const getRailsDatabase = function(user){
             return $q( (resolve, reject) => {
-                $http.get(`${RailsCreds.databaseURL}/answers`, {headers: 
+                $http.get(`${RailsCreds.databaseURL}/questions`, {headers: 
                     {
                         Authorization: `${userFactory.getTokenBack()}`,
                     },
