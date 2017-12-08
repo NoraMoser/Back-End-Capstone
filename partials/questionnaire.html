@@ -1,6 +1,15 @@
 <h1>Questionnaire</h1>
 
-<div ng-repeat='question in questions'>
-    {{question.id}}
-    {{question.questions}}
+      
+<div ng-repeat='question in questions' class="form-group">
+    <label for="sel1">{{question.questions}}</label>
+    <select class="form-control" id="sel1">
+        <option ng-repeat='answer in answers' ng-if="answer.question_id == question.id">{{answer.drop_down_items}}</option>
+    </select>
+</div>
+
+<div ng-repeat="book in books">
+    {{book.title}}
+    {{book.authors}}
+   <img ng-src='{{book.image}}'>' </img>
 </div>
