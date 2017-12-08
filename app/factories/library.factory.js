@@ -7,11 +7,13 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
     
     
         const getRailsDatabase = function(user){
-            console.log('hello');
             return $q( (resolve, reject) => {
-                $http.get(`${RailsCreds.databaseURL}/answers.json`)
+                $http.get(`${RailsCreds.databaseURL}/questions`, {headers: 
+                    {
+                        Authorization: `${userFactory.getTokenBack()}`,
+                    },
+                })
                 .then((itemObject) => {
-                    console.log('itemObject', itemObject);
                     let itemCollection = itemObject.data;
                     resolve(itemCollection);
                     })
@@ -20,5 +22,7 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
                     });
             });
         };
+
+        
         return {getRailsDatabase};
     });
