@@ -3,7 +3,6 @@
 
 app.factory("userFactory", function(RailsCreds, $q, $http){
 
-let userToken;     
 
     const createNewUser = function(user) {
 
@@ -17,7 +16,6 @@ let userToken;
     var auth_token = "";
 
     const getToken = function(user) {
-        //get method 
         return $q (( resolve, reject) => {
             $http.post(`${RailsCreds.databaseURL}/authenticate`, user)
             .then((data => {
@@ -26,9 +24,6 @@ let userToken;
             })
             );
         });
-        
-        
-        
     };
     
     const getTokenBack = function() {
