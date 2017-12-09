@@ -13,6 +13,11 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
     $scope.answers = [];
     $scope.books = [];
     
+    $scope.responses = {
+        question_id: 0,
+        user_id: 0,
+        answer_id: 0,
+    };
     
     //this shows all my questions from the database and puts them into an array that I can use on the partial.
     const showAllQuestions = function () {
@@ -34,14 +39,21 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
 
     //This gets all the books from the google books api and puts them into a scoped array so I can use it on the partial.
     const getRecommendations = function() {
-        libraryFactory.getBooks()
+        libraryFactory.getBooks('Potter')
         .then((books) => {
             $scope.books = books;
             console.log("books", books);
         });
     };
 
-   
+    // const sendResponses = function() {
+    //     libraryFactory.sendResponses($scope.responses)
+    //     .then((responses) => {
+    //         console.log("responses", responses);
+    //     });
+    // };
+
+    // sendResponses();
     getRecommendations();
     showAllQuestions();
     getAnswers();

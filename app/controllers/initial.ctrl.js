@@ -10,6 +10,8 @@ app.controller('initialCtrl', function($routeParams, $scope, userFactory, $windo
         password: "",
     };
 
+    
+
     $scope.login = function() {
         $scope.checkEmail = document.getElementById("emailLogin").value;
         $scope.checkPassword = document.getElementById("passwordLogin").value;

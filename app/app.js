@@ -20,6 +20,21 @@ app.config(($routeProvider) => {
         templateUrl: 'partials/signupform.html',
         controller: 'formCtrl'
     })
+
+    .when('/to-read', {
+        templateUrl: 'partials/booklist.html',
+        controller: 'listCtrl'
+    })
+
+    .when('/has-read', {
+        templateUrl: 'partials/has-read.html',
+        controller: 'listCtrl'
+    })
+
+    .when('/search', {
+        templateUrl: 'partials/search.html',
+        controller: 'listCtrl'
+    })
     
     .otherwise('/');
 });
