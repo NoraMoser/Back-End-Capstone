@@ -11,5 +11,7 @@
 <div ng-repeat="book in books">
     {{book.title}}
     {{book.authors}}
+    {{book.pageNum}}
    <img ng-src='{{book.image}}'>' </img>
+   <a href="{{book.preview}}"></a>
 </div>

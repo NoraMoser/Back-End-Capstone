@@ -14,7 +14,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
     $scope.books = [];
     
     
-    
+    //this shows all my questions from the database and puts them into an array that I can use on the partial.
     const showAllQuestions = function () {
         libraryFactory.getRailsDatabase()
         .then((questions) => {
@@ -22,6 +22,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
         });
     };
     
+    //This is the same as above
     const getAnswers = function () {
         libraryFactory.getAnswers()
         .then((answers) => {
@@ -31,6 +32,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
         }); 
     };
 
+    //This gets all the books from the google books api and puts them into a scoped array so I can use it on the partial.
     const getRecommendations = function() {
         libraryFactory.getBooks()
         .then((books) => {
@@ -39,26 +41,9 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
         });
     };
 
-    // $scope.searchTerm="";
-    // const searchBook = function(){
-    //     console.log('search book', $scope.searchTerm);
-    //     libraryFactory.getBooks($scope.searchTerm)
-    //     .then((results) => {
-    //         $scope.display(results);
-        
-    // });
-    // };
-
-
-
-//  const display = (results)=>{
-//     console.log('results', results);
-//     $scope.bookies = results;
-// };
+   
     getRecommendations();
     showAllQuestions();
     getAnswers();
-    
-    // libraryFactory.getRailsDatabase()
-    // .then(data => console.log(data));
+
 });
