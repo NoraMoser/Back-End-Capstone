@@ -40,14 +40,28 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
             });
         };
 
+        // const sendResponses = function(user) {
+            
+        //     return $q( (resolve, reject) => {
+        //     $http.post(`${RailsCreds.databaseURL}/responses`)
+        //     .then((itemObject) => {
+        //         let itemCollection = itemObject.data;
+        //         resolve(itemCollection);
+        //         })
+        //         .catch((error) => {
+        //             reject(error);
+        //         });
+        //      });
+        // };
+
         //This builds the book object with all of the keys that I want to use for my questionnaire.
         const buildBookObjs = function(data){
             
                     let BookObjs =  data.map(function(currentBook){   
-                        console.log("current book", currentBook);                     
+                        // console.log("current book", currentBook);                     
                         let book =  {
                             id: currentBook.id,
-                            authors: currentBook.volumeInfo.authors,
+                            authors: currentBook.volumeInfo.authors[0],
                             image: currentBook.volumeInfo.imageLinks.thumbnail,
                             title: currentBook.volumeInfo.title,
                             description: currentBook.volumeInfo.description,
@@ -73,7 +87,7 @@ var books = [];
                 $http.get(`https://www.googleapis.com/books/v1/volumes?q=search+terms:${recommendations}`)
                 .then((bookArray) => {
                     books = buildBookObjs(bookArray.data.items);
-                    console.log('buildBookObjs', buildBookObjs(bookArray.data.items));
+                    // console.log('buildBookObjs', buildBookObjs(bookArray.data.items));
                     
                     resolve(books);
                     })

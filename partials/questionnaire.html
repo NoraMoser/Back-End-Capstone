@@ -1,3 +1,12 @@
+<ul>
+    <li><a ng-href="#!/form">Sign Up</a></li>
+    <li><a ng-href="#!/questionnaire">Questionnaire</a></li>
+    <li><a ng-href="#!/search">Search</a></li>    
+    <li><a ng-href="#!/to-read">To-Read List</a></li>
+    <li><a ng-href="#!/has-read">Already Read List</a></li>
+    
+</ul>
+
 <h1>Questionnaire</h1>
 
       
@@ -7,11 +16,12 @@
         <option ng-repeat='answer in answers' ng-if="answer.question_id == question.id">{{answer.drop_down_items}}</option>
     </select>
 </div>
+<button ng-click='sendResponses()'>Finish</button>
 
-<div ng-repeat="book in books">
-    {{book.title}}
-    {{book.authors}}
-    {{book.pageNum}}
-   <img ng-src='{{book.image}}'>' </img>
-   <a href="{{book.preview}}"></a>
+<div id='bookStyle' ng-repeat="book in books">
+    <img ng-src='{{book.image}}'></img>
+    <h1>{{book.title}}</h1>
+    <h3>{{book.authors}}</h3>
+    <h4>Pages: {{book.pageNum}}</h4>
+    <a ng-href="#!/{{book.link}}"></a>
 </div>
