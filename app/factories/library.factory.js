@@ -61,7 +61,7 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
                         // console.log("current book", currentBook);                     
                         let book =  {
                             id: currentBook.id,
-                            authors: currentBook.volumeInfo.authors[0],
+                            authors: currentBook.volumeInfo.authors,
                             image: currentBook.volumeInfo.imageLinks.thumbnail,
                             title: currentBook.volumeInfo.title,
                             description: currentBook.volumeInfo.description,
