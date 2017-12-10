@@ -8,3 +8,12 @@
 </ul>
 
 <h1>Find Books Here</h1>
+
+<input id="searchBooks" type="text"></input> <button id="submitButton" ng-click="searchBooks2()">Submit</button>
+
+<div ng-repeat="book in books">
+    <img ng-src='{{book.image}}'></img>
+    <h1>{{book.title}}</h1>
+    <h3>{{book.authors}}</h3>
+    <h4>Pages: {{book.pageNum}}</h4>
+</div>

@@ -5,7 +5,22 @@
 
 console.log('booklists.ctrl');
 
-app.controller('listCtrl', function($routeParams, $scope) {
+app.controller('listCtrl', function($routeParams, $scope, libraryFactory) {
+
+    $scope.books = [];
+    
+    $scope.searchBooks2 = function() {
+        let searchBooks = document.getElementById("searchBooks").value;
+        console.log('hello');
+        libraryFactory.getBooks(searchBooks)
+        .then((books) => {
+            $scope.books = books;
+            console.log("books", books);
+        });
+        // return $scope.searchBooks;
+    };
+
+
 
 });
     
