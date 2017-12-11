@@ -40,19 +40,25 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
             });
         };
 
-        // const sendResponses = function(user) {
+        const sendResponses = function(responses) {
             
-        //     return $q( (resolve, reject) => {
-        //     $http.post(`${RailsCreds.databaseURL}/responses`)
-        //     .then((itemObject) => {
-        //         let itemCollection = itemObject.data;
-        //         resolve(itemCollection);
-        //         })
-        //         .catch((error) => {
-        //             reject(error);
-        //         });
-        //      });
-        // };
+            // let responseString = angular.toJson(responses);
+            // console.log(responseString);
+            return $q( (resolve, reject) => {
+            $http.post(`${RailsCreds.databaseURL}/responses`, {'responses':responses}, {headers: 
+                {
+                    Authorization: `${userFactory.getTokenBack()}`,
+                },
+            })
+            .then((itemObject) => {
+                let itemCollection = itemObject.data;
+                resolve(itemCollection);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+             });
+        };
 
         //This builds the book object with all of the keys that I want to use for my questionnaire.
         const buildBookObjs = function(data){
@@ -98,5 +104,5 @@ var books = [];
         };
 
         
-        return {getRailsDatabase, getAnswers, getBooks};
+        return {getRailsDatabase, getAnswers, getBooks, sendResponses};
     });

@@ -6,18 +6,30 @@
 
 console.log('questionnaire.ctrl');
 
-app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scope) {
+app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scope, userFactory) {
+
+
 
 
     $scope.questions = [];
-    $scope.answers = [];
+    // $scope.answers = [];
     $scope.books = [];
+
     
-    $scope.responses = {
-        question_id: 0,
-        user_id: 0,
-        answer_id: 0,
-    };
+    // $scope.responses = [
+    //     // {question_id: 0,
+    //     // user_id: userFactory.getCurrentUser(),
+    //     // answer_id: 0,}
+    // ];
+
+    $scope.data = {
+        responses: {},
+        answers: [
+          {id: '1', name: 'Option A'},
+          {id: '2', name: 'Option B'},
+          {id: '3', name: 'Option C'}
+        ]
+       };
     
     //this shows all my questions from the database and puts them into an array that I can use on the partial.
     const showAllQuestions = function () {
@@ -31,7 +43,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
     const getAnswers = function () {
         libraryFactory.getAnswers()
         .then((answers) => {
-            $scope.answers = answers;  
+            $scope.data.answers = answers;  
             // console.log($scope.questions);          
             console.log("answers", answers);
         }); 
@@ -45,15 +57,39 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
             console.log("books", books);
         });
     };
-
-    // const sendResponses = function() {
-    //     libraryFactory.sendResponses($scope.responses)
-    //     .then((responses) => {
-    //         console.log("responses", responses);
-    //     });
+    // $scope.responseObject = {
+    //     question_id: 0,
+    //     user_id: 0,
+    //     answer_id: 0,
     // };
 
-    // sendResponses();
+    const parseResponses = (obj) => {
+        // turn the answer_ids to integers
+        let objArray = Object.keys(obj).map(response => {
+            let tempObj = {
+               question_id: parseInt(response),
+                user_id: userFactory.getCurrentUser(),
+                answer_id: parseInt(obj[response]),
+            };
+            // console.log("response object", $scope.responseObject);
+            return tempObj;
+        });
+        
+        console.log("obj array", objArray);
+         return objArray;
+    };
+
+    $scope.sendResponses = function() {
+        let parsedResponses = parseResponses($scope.data.responses);
+        console.log("responses", parsedResponses);
+        libraryFactory.sendResponses(parsedResponses)
+        .then((questionResponses) => {
+            console.log("question responses", questionResponses);
+        });
+    };
+
+    
+
     getRecommendations();
     showAllQuestions();
     getAnswers();

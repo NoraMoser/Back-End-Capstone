@@ -43,5 +43,5 @@ app.factory("userFactory", function(RailsCreds, $q, $http){
 
 
     
-    return {createNewUser, getToken, getTokenBack};
+    return {createNewUser, getToken, getTokenBack, getCurrentUser};
 });
