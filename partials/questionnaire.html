@@ -17,8 +17,9 @@
             ng-model="data.responses[question.id]">
         <option ng-repeat='answer in data.answers' ng-if="answer.question_id == question.id" value="{{answer.id}}">{{answer.drop_down_items}}</option>
     </select>
-    
+    <button>Finish</button>
 </div>
+
 <button ng-click='sendResponses()'>Finish</button>
 
 <div id='bookStyle' ng-repeat="book in books">
@@ -28,3 +29,15 @@
     <h4>Pages: {{book.pageNum}}</h4>
     <a ng-href="#!/{{book.link}}"></a>
 </div>
+
+
+<!-- <input id="getRecommendations" type="text"></input>
+<button ng-click="getRecommendationsForGenre()">Search</button>
+
+<div id='bookStyle' ng-repeat="book in fictionBooks">
+        <img ng-src='{{book.image}}'></img>
+        <h1>{{book.title}}</h1>
+        <h3>{{book.authors}}</h3>
+        <h4>Pages: {{book.pageNum}}</h4>
+        <a ng-href="#!/{{book.link}}"></a>
+    </div> -->

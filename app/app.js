@@ -33,7 +33,7 @@ app.config(($routeProvider) => {
 
     .when('/search', {
         templateUrl: 'partials/search.html',
-        controller: 'listCtrl'
+        controller: 'searchCtrl'
     })
     
     .otherwise('/');

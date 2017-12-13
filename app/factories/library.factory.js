@@ -64,7 +64,7 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
         const buildBookObjs = function(data){
             
                     let BookObjs =  data.map(function(currentBook){   
-                        // console.log("current book", currentBook);                     
+                        console.log("current book", currentBook);                     
                         let book =  {
                             id: currentBook.id,
                             authors: currentBook.volumeInfo.authors,
@@ -75,7 +75,7 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
                             pageNum: currentBook.volumeInfo.pageCount,
                             rating: currentBook.volumeInfo.averageRating,
                             published: currentBook.volumeInfo.publishedDate,
-                            genre: currentBook.volumeInfo.category,
+                            genre: currentBook.volumeInfo.categories,
                             preview: currentBook.volumeInfo.previewLink
                         };
                         return book;
@@ -87,14 +87,14 @@ app.factory("libraryFactory", function($q, $http, $injector, userFactory, RailsC
 
 //this puts all the books from google books api into the books variable.  I use books so I can push the object built above into this so I can get back the things I want.
 var books = [];
-        const getBooks = function(recommendations){
-            
+        const getBooksByGenre = function(recommendations){
+            // search+terms:
             return $q((resolve, reject) =>{
-                $http.get(`https://www.googleapis.com/books/v1/volumes?q=search+terms:${recommendations}`)
+                $http.get(`https://www.googleapis.com/books/v1/volumes?q=subject:${recommendations}`)
                 .then((bookArray) => {
                     books = buildBookObjs(bookArray.data.items);
-                    // console.log('buildBookObjs', buildBookObjs(bookArray.data.items));
-                    
+                    console.log('buildBookObjs', buildBookObjs(bookArray.data.items));
+                    console.log("book array", bookArray);
                     resolve(books);
                     })
                 .catch((error) => {
@@ -103,6 +103,59 @@ var books = [];
             });
         };
 
+        var booksByAuthor = [];
+        const getBooksByAuthor = function(author){
+            return $q((resolve, reject) =>{
+                $http.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}`)
+                .then((bookArray) => {
+                    booksByAuthor = buildBookObjs(bookArray.data.items);
+                    // console.log('buildBookObjs', buildBookObjs(bookArray.data.items));
+                    console.log("author book array", bookArray);
+                    resolve(booksByAuthor);
+                    })
+                .catch((error) => {
+                    reject(error);
+                });
+            });
+        };
+
+        var booksByPublisher = [];
+        const getBooksByPublisher = function(publisher){
+            return $q((resolve, reject) =>{
+                $http.get(`https://www.googleapis.com/books/v1/volumes?q=inpublisher:${publisher}`)
+                .then((bookArray) => {
+                    booksByPublisher = buildBookObjs(bookArray.data.items);
+                    // console.log('buildBookObjs', buildBookObjs(bookArray.data.items));
+                    console.log("author book array", bookArray);
+                    resolve(booksByPublisher);
+                    })
+                .catch((error) => {
+                    reject(error);
+                });
+            });
+        };
+
+        const sendBooks = function(books) {
+            let newBook = JSON.stringify(books);
+           
+            return $http.post(`${RailsCreds.databaseURL}/user_books`, newBook, {headers: 
+                {
+                    Authorization: `${userFactory.getTokenBack()}`,
+                },
+            })
+            .then((data) => {
+                // let itemCollection = itemObject.data;
+                return data;
+            }, (error) => {
+                let errorCode = error.code;
+                let errorMessage = error.message;
+                console.log("error", errorCode, errorMessage);
+                 });
+        };
+
+
         
-        return {getRailsDatabase, getAnswers, getBooks, sendResponses};
+
+        
+        return {getRailsDatabase, getAnswers, getBooksByGenre, sendResponses, buildBookObjs, getBooksByAuthor, getBooksByPublisher, sendBooks};
     });
