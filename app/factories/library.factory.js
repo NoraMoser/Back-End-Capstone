@@ -153,9 +153,26 @@ var books = [];
                  });
         };
 
+        const getToRead = function(user) {
+            return $q( (resolve, reject) => {
+                $http.get(`${RailsCreds.databaseURL}/user_books`, {headers: 
+                    {
+                        Authorization: `${userFactory.getTokenBack()}`,
+                    },
+                })
+                .then((itemObject) => {
+                    let itemCollection = itemObject.data;
+                    resolve(itemCollection);
+                    })
+                    .catch((error) => {
+                        reject(error);
+                    });
+            });
+        };
+
 
         
 
         
-        return {getRailsDatabase, getAnswers, getBooksByGenre, sendResponses, buildBookObjs, getBooksByAuthor, getBooksByPublisher, sendBooks};
+        return {getRailsDatabase, getAnswers, getBooksByGenre, sendResponses, buildBookObjs, getBooksByAuthor, getBooksByPublisher, sendBooks, getToRead};
     });

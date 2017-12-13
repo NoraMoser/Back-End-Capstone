@@ -17,7 +17,6 @@
             ng-model="data.responses[question.id]">
         <option ng-repeat='answer in data.answers' ng-if="answer.question_id == question.id" value="{{answer.id}}">{{answer.drop_down_items}}</option>
     </select>
-    <button>Finish</button>
 </div>
 
 <button ng-click='sendResponses()'>Finish</button>

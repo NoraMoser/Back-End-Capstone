@@ -7,15 +7,52 @@ console.log('booklists.ctrl');
 
 app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFactory) {
     
+    $scope.toread = [];
 
     $scope.sendUserBooks = function(book) {
-        book.rating = 'false';
+        book.cover_photo = book.image;
         book.author = book.authors[0];
+        book.rating = 'NULL';
         book.has_read = 'false';
         book.book_title = book.title;
         book.user_id = userFactory.getCurrentUser();
         libraryFactory.sendBooks(book);
     };
 
+    const getToReadBooks = function () {
+        libraryFactory.getToRead()
+        .then((userbooks) => {
+            $scope.toread = userbooks;  
+            // console.log($scope.questions);          
+        }); 
+    };
+
+    $scope.sendHasReadBooks = function(book) {
+        book.has_read = 'true';
+        libraryFactory.sendBooks(book);
+    };
+
+    this.selStars = 0; // initial stars count
+    this.maxStars = 5;
+
+    this.getStarArray = function() {
+      var result = [];
+      for (var i = 1; i <= this.maxStars; i++)
+        result.push(i);
+      return result;
+    };
+
+    this.getClass = function(value) {
+      return 'glyphicon glyphicon-star' + (this.selStars >= value ? '' : '-empty');
+    };
+
+    this.setClass = function(sender, value) {
+      this.selStars = value;
+      sender.currentTarget.setAttribute('class', this.getClass(value));
+    };
+
+  
+
+    getToReadBooks();
 });
     
