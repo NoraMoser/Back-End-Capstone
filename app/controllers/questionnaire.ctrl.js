@@ -16,11 +16,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
     $scope.books = [];
 
     
-    // $scope.responses = [
-    //     // {question_id: 0,
-    //     // user_id: userFactory.getCurrentUser(),
-    //     // answer_id: 0,}
-    // ];
+    
 
     $scope.data = {
         responses: {},
@@ -57,11 +53,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
             console.log("books", books);
         });
     };
-    // $scope.responseObject = {
-    //     question_id: 0,
-    //     user_id: 0,
-    //     answer_id: 0,
-    // };
+   
 
     const parseResponses = (obj) => {
         // turn the answer_ids to integers
@@ -87,10 +79,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
             console.log("question responses", questionResponses);
         });
     };
-
-    
-
-    getRecommendations();
+  
     showAllQuestions();
     getAnswers();
 
