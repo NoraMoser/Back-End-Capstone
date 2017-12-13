@@ -103,6 +103,7 @@ var books = [];
             });
         };
 
+        //these next few gets are searches that the google books api allows- author, subje ct, publisher, etc then I'm saving them to a variable so I can use them in the resolve. My objects are saved to the variabes. 
         var booksByAuthor = [];
         const getBooksByAuthor = function(author){
             return $q((resolve, reject) =>{
@@ -134,7 +135,7 @@ var books = [];
                 });
             });
         };
-
+//this saves books to the database.
         const sendBooks = function(books) {
             let newBook = JSON.stringify(books);
            
@@ -152,7 +153,7 @@ var books = [];
                 console.log("error", errorCode, errorMessage);
                  });
         };
-
+//This gets books back from the user_books table so that I can display them on the book lists.
         const getToRead = function(user) {
             return $q( (resolve, reject) => {
                 $http.get(`${RailsCreds.databaseURL}/user_books`, {headers: 
@@ -170,6 +171,7 @@ var books = [];
             });
         };
 
+        //this edits the rating when the user adds a star and clicks the finish button.
         const editUserBooks = function(id, rating) {
             console.log("id and obj to update", id, rating);
             return $q((resolve, reject) => {
