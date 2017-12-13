@@ -170,9 +170,27 @@ var books = [];
             });
         };
 
+        const editUserBooks = function(id, rating) {
+            console.log("id and obj to update", id, rating);
+            return $q((resolve, reject) => {
+                // let newObj = JSON.stringify(rating);
+                $http.patch(`${RailsCreds.databaseURL}/user_books/${id}`, {'user_book':rating}, {headers: 
+                    {
+                        Authorization: `${userFactory.getTokenBack()}`,
+                    },
+                })
+                .then((data) => {
+                    resolve(data);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+            });
+        };
+
 
         
 
         
-        return {getRailsDatabase, getAnswers, getBooksByGenre, sendResponses, buildBookObjs, getBooksByAuthor, getBooksByPublisher, sendBooks, getToRead};
+        return {getRailsDatabase, getAnswers, getBooksByGenre, sendResponses, buildBookObjs, getBooksByAuthor, getBooksByPublisher, sendBooks, getToRead, editUserBooks};
     });
