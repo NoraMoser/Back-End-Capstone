@@ -70,7 +70,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
         console.log("obj array", objArray);
          return objArray;
     };
-
+//this was sending the responses to the drop down to the database- not usng this at the moment, but may use it later.
     $scope.sendResponses = function() {
         let parsedResponses = parseResponses($scope.data.responses);
         console.log("responses", parsedResponses);

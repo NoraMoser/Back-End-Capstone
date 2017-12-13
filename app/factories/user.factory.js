@@ -3,6 +3,7 @@
 
 app.factory("userFactory", function(RailsCreds, $q, $http){
 
+    //this allows a user to sign up for the app
     const createNewUser = function(user) {
         
         return $http.post(`${RailsCreds.databaseURL}/users`, {'user':user})
@@ -18,6 +19,7 @@ app.factory("userFactory", function(RailsCreds, $q, $http){
     
     var auth_token = "";
     var user_id;
+//this gets the token for authentication and saves the auth token (above) and the current user id (above) and sets them to a variable.
 
     const getToken = function(user) {
         return $q (( resolve, reject) => {

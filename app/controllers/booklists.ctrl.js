@@ -8,6 +8,7 @@ console.log('booklists.ctrl');
 app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFactory) {
     
     $scope.toread = [];
+//this is posting to the user_books table by passing in the object in the html.
 
     $scope.sendUserBooks = function(book) {
         book.cover_photo = book.image;
@@ -26,7 +27,7 @@ app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFa
             // console.log($scope.questions);          
         }); 
     };
-
+//this changes has_read to true after user clicks that they have read the book.
     $scope.sendHasReadBooks = function(book) {
         book.has_read = 'true';
         libraryFactory.sendBooks(book);
@@ -54,7 +55,7 @@ app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFa
     $scope.ratings = {
         rating: "",
     };
-
+//this changes the users rating after they click on the stars in the has-read page. I am sending an object (above), and the id and rating being passed are in the html.
     $scope.changeUserRating = function(id, rating) {
         let newRating = JSON.stringify(rating);
         

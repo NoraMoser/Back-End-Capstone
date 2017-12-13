@@ -12,7 +12,7 @@ app.controller('searchCtrl', function(libraryFactory, $routeParams, $scope, user
     
     
     
-
+//These next few allow the user to search by the specified collections that the google books api allows
 $scope.searchBooksByCollection = function() {
     let searchBooksByCollection = document.getElementById("searchBooksByCollection").value;
     console.log('hello');
