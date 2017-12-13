@@ -51,6 +51,19 @@ app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFa
       sender.currentTarget.setAttribute('class', this.getClass(value));
     };
 
+    $scope.ratings = {
+        rating: "",
+    };
+
+    $scope.changeUserRating = function(id, rating) {
+        let newRating = JSON.stringify(rating);
+        
+        console.log("rating", rating);
+        console.log("id", id);
+        $scope.ratings.rating = newRating;
+        libraryFactory.editUserBooks(id, $scope.ratings);
+    };
+
   
 
     getToReadBooks();
