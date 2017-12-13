@@ -8,3 +8,20 @@
 </ul>
 
 <h1>Completed Books</h1>
+
+
+<div ng-repeat="book in toread" ng-if="book.has_read == true">
+    <img ng-src='{{book.cover_photo}}'></img>
+    <h1>{{book.title}}</h1>
+    <h3>{{book.author}}</h3>
+    <button class="{{book.id}}">Delete</button>
+    <div ng-app="LibraryApp">
+    <div ng-controller="listCtrl as ctrl">
+        <div ng-repeat="n in ctrl.getStarArray()" ng-class="ctrl.getClass(n)" ng-click="ctrl.setClass($event,n)"></div>
+        <p>
+            You have chosen {{ctrl.selStars}} stars
+        </p>
+        </div>
+    </div>
+    
+</div>
