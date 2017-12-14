@@ -3,6 +3,8 @@ console.log('app.js');
 
 const app = angular.module("LibraryApp", ["ngRoute"]);
 
+
+
 app.config(($routeProvider) => {
 	$routeProvider
 	.when('/', {
