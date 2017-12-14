@@ -10,7 +10,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
 
 
 
-    $scope.isUserAdmin = 'false';
+    $scope.isUserAdmin = false;
     $scope.questions = [];
     // $scope.answers = [];
     $scope.books = [];
@@ -80,16 +80,15 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
         });
     };
 
+    const isAdmin = function(array) {
+        return array.filter(user => user.id == userFactory.getCurrentUser() && user.admin === true).length > 0;
+    };
     const getUser = function() {
         userFactory.getUsers()
         .then((data) => {
             console.log("data from users", data);
-            if(data.admin == 'true') {
-                $scope.isUserAdmin = 'true';
-            } else {
-                $scope.isUserAdmin = 'false';
-            }
-            console.log("is user admin?", $scope.isUserAdmin);
+            console.log("condition", data.filter(user => user.id == userFactory.getCurrentUser() && user.admin === true).length > 0);
+            $scope.isUserAdmin = isAdmin(data) ? true : false;
         });
     };
 
