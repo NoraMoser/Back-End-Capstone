@@ -190,9 +190,26 @@ var books = [];
             });
         };
 
+        const deleteBooks = function(id){
+            //console.log("item id", id);
+        return $q((resolve, reject) => {
+            $http.delete(`http://localhost:3000/user_books/${id}`, {headers:
+                {
+                    Authorization: `${userFactory.getTokenBack()}`,
+                },
+            })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+        });
+    };
+
 
         
 
         
-        return {getRailsDatabase, getAnswers, getBooksByGenre, sendResponses, buildBookObjs, getBooksByAuthor, getBooksByPublisher, sendBooks, getToRead, editUserBooks};
+        return {getRailsDatabase, getAnswers, getBooksByGenre, sendResponses, buildBookObjs, getBooksByAuthor, getBooksByPublisher, sendBooks, getToRead, editUserBooks, deleteBooks};
     });

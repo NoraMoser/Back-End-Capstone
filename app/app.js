@@ -35,6 +35,11 @@ app.config(($routeProvider) => {
         templateUrl: 'partials/search.html',
         controller: 'searchCtrl'
     })
+
+    .when('/statistics', {
+        templateUrl: 'partials/statistics.html',
+        controller: 'statisticsCtrl'
+    })
     
     .otherwise('/');
 });

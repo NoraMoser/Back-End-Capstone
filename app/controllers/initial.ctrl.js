@@ -10,6 +10,8 @@ app.controller('initialCtrl', function($routeParams, $scope, userFactory, $windo
         password: "",
     };
 
+    $scope.adminLoginTruthy = 0;
+
     
 //this allows login with the auth token- if the user has an auth token, they are sent to the next page.  if not, an alert shows up.
     $scope.login = function() {
@@ -30,4 +32,8 @@ app.controller('initialCtrl', function($routeParams, $scope, userFactory, $windo
         });
 
     };
+
+    
+    
+    
 });

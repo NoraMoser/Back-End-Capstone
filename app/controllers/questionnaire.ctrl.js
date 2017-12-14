@@ -10,7 +10,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
 
 
 
-
+    $scope.isUserAdmin = false;
     $scope.questions = [];
     // $scope.answers = [];
     $scope.books = [];
@@ -79,7 +79,23 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
             console.log("question responses", questionResponses);
         });
     };
-  
+
+    const isAdmin = function(array) {
+        return array.filter(user => user.id == userFactory.getCurrentUser() && user.admin === true).length > 0;
+    };
+    const getUser = function() {
+        userFactory.getUsers()
+        .then((data) => {
+            console.log("data from users", data);
+            console.log("condition", data.filter(user => user.id == userFactory.getCurrentUser() && user.admin === true).length > 0);
+            $scope.isUserAdmin = isAdmin(data) ? true : false;
+        });
+    };
+
+
+    
+
+    getUser();
     showAllQuestions();
     getAnswers();
 
