@@ -5,7 +5,7 @@
 
 console.log('booklists.ctrl');
 
-app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFactory) {
+app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFactory, $route) {
     
     $scope.toread = [];
 //this is posting to the user_books table by passing in the object in the html.
@@ -63,6 +63,17 @@ app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFa
         console.log("id", id);
         $scope.ratings.rating = newRating;
         libraryFactory.editUserBooks(id, $scope.ratings);
+    };
+
+    $scope.deleteBooks = function(id) {
+        libraryFactory.deleteBooks(id)
+        .then((taco) => {
+            $route.reload();
+        });
+    };
+
+    $scope.logOut = function() {
+        userFactory.logOut();
     };
 
   

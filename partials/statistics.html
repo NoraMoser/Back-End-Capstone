@@ -1,1 +1,17 @@
 <!-- link to different grades -->
+<ul>
+        <li><a ng-href="#!/form">Sign Up</a></li>
+        <li><a ng-href="#!/statistics">Statistics</a></li>
+        <li><a ng-href="#!/" ng-click="logOut()">Log Out</a></li>
+        
+</ul>
+
+<h1>Statistics</h1>
+
+<div ng-repeat="book in highrate" ng-if="book.rating > 4">
+    <img ng-src='{{book.cover_photo}}'></img>
+    <h1>{{book.title}}</h1>
+    <h3>{{book.author}}</h3>
+    <button class="{{book.id}}" ng-click="deleteBooks(book.id)">Delete</button>
+    
+</div>

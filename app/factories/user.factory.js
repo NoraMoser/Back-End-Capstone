@@ -3,6 +3,28 @@
 
 app.factory("userFactory", function(RailsCreds, $q, $http){
 
+    
+
+    const getUsers = function(user) {
+        return $q( (resolve, reject) => {
+            $http.get(`${RailsCreds.databaseURL}/users`, {headers: 
+                {
+                    Authorization: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNCwiZXhwIjoxNTEzMzUyNDU2fQ.7csyWnWdteAJehY1kpi7oOcsTvlPYoWj4SSPggwMhIg',
+                },
+            })
+            .then((itemObject) => {
+                console.log("initial data from user factory", itemObject);
+                let itemCollection = itemObject.data;
+                resolve(itemCollection);
+                })
+                .catch((error) => {
+                    reject(error);
+                });
+        });
+    };
+
+    
+    
     //this allows a user to sign up for the app
     const createNewUser = function(user) {
         
@@ -34,6 +56,10 @@ app.factory("userFactory", function(RailsCreds, $q, $http){
             );
         });
     };
+
+    const logOut = function() {
+        auth_token = 0;
+    };
     
     const getTokenBack = function() {
         return auth_token;
@@ -45,5 +71,5 @@ app.factory("userFactory", function(RailsCreds, $q, $http){
 
 
     
-    return {createNewUser, getToken, getTokenBack, getCurrentUser};
+    return {createNewUser, getToken, getTokenBack, getCurrentUser, logOut, getUsers};
 });

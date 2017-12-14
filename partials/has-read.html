@@ -4,6 +4,9 @@
     <li><a ng-href="#!/search">Search</a></li>    
     <li><a ng-href="#!/to-read">To-Read List</a></li>
     <li><a ng-href="#!/has-read">Already Read List</a></li>
+    <li><a ng-href="#!/statistics">Statistics</a></li>
+    <li><a ng-href="#!/" ng-click="logOut()">Log Out</a></li>
+    
     
 </ul>
 
@@ -14,7 +17,7 @@
     <img ng-src='{{book.cover_photo}}'></img>
     <h1>{{book.title}}</h1>
     <h3>{{book.author}}</h3>
-    <button class="{{book.id}}">Delete</button>
+    <button class="{{book.id}}" ng-click="deleteBooks(book.id)">Delete</button>
     <div ng-app="LibraryApp">
     <div ng-controller="listCtrl as ctrl">
         <div ng-repeat="n in ctrl.getStarArray()" ng-class="ctrl.getClass(n)" ng-click="ctrl.setClass($event,n)"></div>
