@@ -135,6 +135,22 @@ var books = [];
                 });
             });
         };
+
+        var booksByTitle = [];
+        const getBooksByTitle = function(title){
+            return $q((resolve, reject) =>{
+                $http.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${title}`)
+                .then((bookArray) => {
+                    booksByTitle = buildBookObjs(bookArray.data.items);
+                    // console.log('buildBookObjs', buildBookObjs(bookArray.data.items));
+                    console.log("author book array", bookArray);
+                    resolve(booksByTitle);
+                    })
+                .catch((error) => {
+                    reject(error);
+                });
+            });
+        };
 //this saves books to the database.
         const sendBooks = function(books) {
             let newBook = JSON.stringify(books);
@@ -211,5 +227,5 @@ var books = [];
         
 
         
-        return {getRailsDatabase, getAnswers, getBooksByGenre, sendResponses, buildBookObjs, getBooksByAuthor, getBooksByPublisher, sendBooks, getToRead, editUserBooks, deleteBooks};
+        return {getRailsDatabase, getAnswers, getBooksByGenre, sendResponses, buildBookObjs, getBooksByAuthor, getBooksByPublisher, sendBooks, getToRead, editUserBooks, deleteBooks, getBooksByTitle};
     });

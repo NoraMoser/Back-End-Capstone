@@ -8,7 +8,7 @@ app.controller('searchCtrl', function(libraryFactory, $routeParams, $scope, user
     $scope.booksbygenre = [];
     $scope.bookcollections = [];
     $scope.booksbyauthor = [];
-    $scope.booksbypublisher = [];
+    $scope.booksbytitle = [];
     
     
     
@@ -52,6 +52,14 @@ $scope.searchBooksByPublisher = function() {
     });
 };
 
+$scope.searchBooksByTitle = function() {
+    let searchBooksByTitle = document.getElementById("searchBooksByTitle").value;
+    libraryFactory.getBooksByTitle(searchBooksByTitle)
+    .then((booksbytitle) => {
+        $scope.booksbytitle = booksbytitle;
+        console.log("books by publisher", booksbytitle);
+    });
+};
 
 
 
