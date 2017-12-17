@@ -24,6 +24,16 @@
 </div>
 </div>
 
+<h2>Search by title:</h2>
+<input id="searchBooksByTitle" type="text"></input> <button id="submitButtonAgainII" ng-click="searchBooksByTitle()">Submit</button>
+
+<div ng-repeat="book in booksbytitle">
+    <img ng-src='{{book.image}}'></img>
+    <h1>{{book.title}}</h1>
+    <h3>{{book.authors}}</h3>
+    <button class="{{book.id}}">To-Read</button><button class="{{book.id}}">Not interested</button>
+</div>
+
 
 <h2>Search by author:</h2>
 <input id="searchBooksByAuthor" type="text"></input> <button id="submitButtonAgain" ng-click="searchBooksByAuthor()">Submit</button>

@@ -14,6 +14,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
     $scope.questions = [];
     // $scope.answers = [];
     $scope.books = [];
+    $scope.recommendations = [];
 
     
     
@@ -87,14 +88,21 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
         userFactory.getUsers()
         .then((data) => {
             console.log("data from users", data);
-            console.log("condition", data.filter(user => user.id == userFactory.getCurrentUser() && user.admin === true).length > 0);
             $scope.isUserAdmin = isAdmin(data) ? true : false;
         });
     };
 
-
+    $scope.getRecommendedBooks = function () {
+        libraryFactory.getToRead()
+        .then((userbooks) => {
+            $scope.recommendations = userbooks;  
+            console.log('recommendations', $scope.recommendations);
+            // console.log($scope.questions);          
+        }); 
+    };
     
-
+    
+    
     getUser();
     showAllQuestions();
     getAnswers();
