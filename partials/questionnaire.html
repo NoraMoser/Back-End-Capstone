@@ -13,34 +13,29 @@
 <h1> Questionnaire</h1>
 
 <div> 
-<div ng-repeat='question in questions' class="form-group" >
-    <label for="sel1">{{question.questions}}</label>
-    <select class="form-control" 
-            id="sel{{question.id}}" 
-            ng-model="data.responses[question.id]" >
-        <option ng-repeat='answer in data.answers' ng-if="answer.question_id == question.id" value="{{answer.id}}">{{answer.drop_down_items}}</option>
-    </select>
-    
-</div>
+    <div ng-repeat='question in questions' class="form-group" >
+        <label for="sel1">{{question.questions}}</label>
+        <select class="form-control" 
+                id="sel{{question.id}}" 
+                ng-model="data.responses[question.id]" >
+            <option ng-repeat='answer in data.answers' ng-if="answer.question_id == question.id" value="{{answer.drop_down_items}}">{{answer.drop_down_items}}</option>
+        </select>
+        
+    </div>
 
-<button ng-click='sendResponses()'>Finish</button>
+<!-- <button ng-click='sendResponses()'>Finish</button> -->
 <button ng-click='getRecommendedBooks()'>Get Recommendations</button>
+<!-- <button ng-click='checkRecommendations()'>Check Recommendations</button> -->
 
-<div ng-repeat='book in recommendations' >
-<section ng-repeat='answer in data.answers' ng-if='book.tags === answer.drop_down_items'>
-        <img ng-src='{{book.cover_photo}}'></img>
-        <h1>{{book.title}}</h1>
-        <h3>{{book.author}}</h3>
-        </section>
-</div>
-</div>
 
-<div id='bookStyle' ng-repeat="book in books">
-    <img ng-src='{{book.image}}'></img>
-    <h1>{{book.title}}</h1>
-    <h3>{{book.authors}}</h3>
-    <h4>Pages: {{book.pageNum}}</h4>
-    <a ng-href="#!/{{book.link}}"></a>
+
+    <div ng-repeat='recommendation in recommendations'>
+        <div ng-repeat="book in recommendation">
+            <img ng-src='{{book.cover_photo}}'></img>
+            <h1>{{book.book_title}}</h1>
+            <h3>{{book.author}}</h3>
+        </div>
+    </div>
 </div>
 </div>
 
