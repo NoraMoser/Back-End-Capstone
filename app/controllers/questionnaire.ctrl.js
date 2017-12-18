@@ -15,6 +15,9 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
     // $scope.answers = [];
     $scope.books = [];
     $scope.recommendations = [];
+    $scope.userBookTags = [];
+    $scope.answers = [];
+    $scope.selectedAnswers = [];
 
     
     
@@ -47,13 +50,13 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
     };
 
     //This gets all the books from the google books api and puts them into a scoped array so I can use it on the partial.
-    const getRecommendations = function() {
-        libraryFactory.getBooks('Potter')
-        .then((books) => {
-            $scope.books = books;
-            console.log("books", books);
-        });
-    };
+    // const getRecommendations = function() {
+    //     libraryFactory.getBooks('Potter')
+    //     .then((books) => {
+    //         $scope.books = books;
+    //         console.log("books", books);
+    //     });
+    // };
    
 
     const parseResponses = (obj) => {
@@ -88,20 +91,39 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
         userFactory.getUsers()
         .then((data) => {
             console.log("data from users", data);
-            $scope.isUserAdmin = isAdmin(data) ? true : false;
+            $scope.isUserAdmin = isAdmin(data) ? true : false; 
         });
     };
+
+    const userBookTags = function(array) {
+        console.log("array from userBookTags", array);
+        return array.filter(taggedBooks => taggedBooks.tags);
+    };
+
+    const splitTags = function(array) {
+        array.forEach(book => book.tags = book.tags.split(","));
+        return array;
+    };
+
+
 
     $scope.getRecommendedBooks = function () {
         libraryFactory.getToRead()
         .then((userbooks) => {
-            $scope.recommendations = userbooks;  
+            $scope.recommendations = userBookTags(userbooks);  
+            $scope.recommendations = splitTags($scope.recommendations);
+            $scope.selectedAnswers = Object.keys($scope.data.responses).map(key => $scope.data.responses[key]);
+            console.log("selected answers", $scope.selectedAnswers);
             console.log('recommendations', $scope.recommendations);
-            // console.log($scope.questions);          
+            
         }); 
     };
-    
-    
+
+    $scope.checkRecommendations = function() {
+        $scope.selectedAnswers.forEach();
+        console.log("$scope.selectedAnswers", $scope.selectedAnswers);
+    };
+
     
     getUser();
     showAllQuestions();
