@@ -10,7 +10,7 @@
 
 <div ng-repeat="book in toread" ng-if="book.has_read == false">
     <img ng-src='{{book.cover_photo}}'></img>
-    <h1>{{book.title}}</h1>
+    <h1>{{book.book_title}}</h1>
     <h3>{{book.author}}</h3>
     <button class="{{book.id}}" ng-click="sendHasReadBooks(book)">Finished</button><button class="{{book.id}}" ng-click="deleteBooks(book.id)">Delete</button>
     

@@ -19,7 +19,7 @@
     <h4 class="card-header">{{book.title}}</h4>
     <div class="card-body">
     <p class="card-text">{{book.authors}}</p>
-    <button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button><button class="btn btn-secondary" class="{{book.id}}">Not interested</button>
+    <button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
 </div>
 </div>
 </div>
@@ -31,7 +31,7 @@
     <img ng-src='{{book.image}}'></img>
     <h1>{{book.title}}</h1>
     <h3>{{book.authors}}</h3>
-    <button class="{{book.id}}">To-Read</button><button class="{{book.id}}">Not interested</button>
+    <button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
 </div>
 
 
@@ -42,7 +42,7 @@
     <img ng-src='{{book.image}}'></img>
     <h1>{{book.title}}</h1>
     <h3>{{book.authors}}</h3>
-    <button class="{{book.id}}">To-Read</button><button class="{{book.id}}">Not interested</button>
+    <<button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
 </div>
 
 <h2>Search by publisher:</h2>
@@ -52,5 +52,5 @@
     <img ng-src='{{book.image}}'></img>
     <h1>{{book.title}}</h1>
     <h3>{{book.authors}}</h3>
-    <button class="{{book.id}}">To-Read</button><button class="{{book.id}}">Not interested</button>
+    <button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
 </div>

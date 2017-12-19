@@ -10,9 +10,18 @@ app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFa
     $scope.toread = [];
 //this is posting to the user_books table by passing in the object in the html.
 
+    $scope.sendQuestionnaireBooks = function(book) {
+        book.cover_photo = book.cover_photo;
+        book.author = book.author;
+        book.has_read = 'false';
+        book.book_title = book.book_title;
+        book.user_id = userFactory.getCurrentUser();
+        libraryFactory.sendBooks(book);
+    };
+
     $scope.sendUserBooks = function(book) {
         book.cover_photo = book.image;
-        book.author = book.authors[0];
+        book.author = book.authors;
         book.rating = 'NULL';
         book.has_read = 'false';
         book.book_title = book.title;
@@ -47,6 +56,9 @@ app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFa
       return 'glyphicon glyphicon-star' + (this.selStars >= value ? '' : '-empty');
     };
 
+    
+
+    
     this.setClass = function(sender, value) {
       this.selStars = value;
       sender.currentTarget.setAttribute('class', this.getClass(value));
