@@ -132,7 +132,7 @@ app.controller('questionnaireCtrl', function(libraryFactory, $routeParams, $scop
                         selectedAnswers = Object.keys($scope.data.responses).map(key => $scope.data.responses[key]);
                         console.log("selected answers", selectedAnswers);
                         console.log('recommendations', recommendedbooks);
-                        $scope.recommendations = getRecommendations(selectedAnswers, recommendedbooks);
+                        $scope.recommendations = getRecommendations(selectedAnswers, recommendedbooks)[0];
                         console.log("recommendations on questionnaire", $scope.recommendations);
                         
                         
