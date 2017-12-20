@@ -16,11 +16,69 @@ li a {
   text-decoration: none; }
 
 li a:hover {
-  background-color: #bb3f9c; }
+  background-color: slategray; }
 
 .glyphicon {
   color: gold;
   cursor: pointer;
   font-size: 1.25em; }
+
+.bookImage {
+  background-image: url("../app/images/bookimage4.jpg");
+  min-height: 75vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.loginForm {
+  font: "Poppins", sans-serif;
+  color: lightslategray;
+  font-size: 1em;
+  text-align: center;
+  margin: auto;
+  margin-top: 2%; }
+
+#passwordLogin {
+  width: 9.8%; }
+
+.header {
+  font: "Poppins", sans-serif;
+  color: lightslategray;
+  text-align: center;
+  font-size: 2em;
+  margin-top: 3%; }
+
+.questionnaire {
+  width: 50%;
+  height: 30%;
+  margin: auto;
+  font: "Poppins", sans-serif;
+  color: lightslategray; }
+
+.searchInput {
+  margin: auto;
+  font: "Poppins", sans-serif;
+  color: lightslategray;
+  text-align: center;
+  font-size: 20px;
+  margin-top: 3%; }
+
+.searchInput input {
+  height: 2%;
+  width: 30%; }
+
+.searchInput h2 {
+  font-size: 30px; }
+
+.litem {
+  font-size: 3em;
+  font-weight: bold; }
+
+.litem p {
+  font-size: 16px; }
+
+.important {
+  width: 60% !important;
+  height: 20% !important; }
 
 /*# sourceMappingURL=main.css.map */

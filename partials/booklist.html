@@ -6,12 +6,18 @@
     
 </ul>
 
-<h1>To-Read List</h1>
+<h1 class="header">To-Read List</h1>
 
-<div ng-repeat="book in toread" ng-if="book.has_read == false">
-    <img ng-src='{{book.cover_photo}}'></img>
-    <h1>{{book.title}}</h1>
-    <h3>{{book.author}}</h3>
-    <button class="{{book.id}}" ng-click="sendHasReadBooks(book)">Finished</button><button class="{{book.id}}" ng-click="deleteBooks(book.id)">Delete</button>
-    
+<ol>
+<div ng-repeat="book in toread" ng-if="book.has_read == false" class="card" style="width: 20rem;">
+<li class="litem">
+    <img class="card-img-top" ng-src='{{book.cover_photo}}' alt="Card image cap"></img>
+    <div class="card-body">
+    <h4 class="card-title">{{book.book_title}}</h4>
+    <p class="card-text">{{book.author}}</p>
+    <button class="btn btn-dark" class="{{book.id}}" ng-click="sendHasReadBooks(book)">Finished</button><button class="btn btn-dark"class="{{book.id}}" ng-click="deleteBooks(book.id)">Delete</button>
 </div>
+</li>
+</div>
+</ol>
+
