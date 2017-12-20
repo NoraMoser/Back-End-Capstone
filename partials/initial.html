@@ -1,11 +1,23 @@
 <!-- navbar in here -->
 
 
-<h1>Log in here:</h1>
-<form>
-    Email:
-    <input id="emailLogin" type="email"><br>
-    Password:
+<h1 class="header">Log in here:</h1>
+
+
+<div>
+    <form class="loginForm">
+        <div>
+        <div class="col-auto">
+        <label for="inlineFormInput">Email</label>    
+        <input id="emailLogin" type="email"><br>
+    </div>
+    <div class="col-auto">
+    <label for="inlineFormInputGroup">Password</label>
     <input id="passwordLogin" type="text"><br>
+    </div>
+        <div class="col-auto">
+    <button class="btn btn-dark" ng-click='login()' ng-click='getTrueAdmin'>Login</button>
+</div>
+</div>
 </form>
-<button ng-click='login()' ng-click='getTrueAdmin'>Login</button>
+</div>

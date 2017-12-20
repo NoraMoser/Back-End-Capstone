@@ -8,10 +8,13 @@
     
 </ul>
 
-<h1>Find Books Here</h1>
+<h1 class="header">Find Books Here</h1>
 
-<h2>Search by genre:</h2>
-<input id="searchBooks" type="text"></input> <button id="submitButton" ng-click="searchBooks2()">Submit</button>
+<div class="searchInput">
+<h2 class="h2">Search by genre:</h2>
+<input id="searchBooks" type="text"></input> 
+<button class="btn btn-dark" id="submitButton" ng-click="searchBooks2()">Submit</button>
+</div>
 
 <div class="card-columns">
 <div ng-repeat="book in booksbygenre" class="card" class="card border-secondary mb-3" style="width: 20rem;">
@@ -19,38 +22,51 @@
     <h4 class="card-header">{{book.title}}</h4>
     <div class="card-body">
     <p class="card-text">{{book.authors}}</p>
-    <button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
+    <button class="btn btn-dark" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
 </div>
 </div>
 </div>
 
-<h2>Search by title:</h2>
-<input id="searchBooksByTitle" type="text"></input> <button id="submitButtonAgainII" ng-click="searchBooksByTitle()">Submit</button>
-
-<div ng-repeat="book in booksbytitle">
-    <img ng-src='{{book.image}}'></img>
-    <h1>{{book.title}}</h1>
-    <h3>{{book.authors}}</h3>
-    <button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
+<div class="searchInput">        
+<h2 class="h2">Search by title:</h2>
+<input class="searchInput" id="searchBooksByTitle" type="text"></input> 
+<button class="btn btn-dark" id="submitButtonAgainII" ng-click="searchBooksByTitle()">Submit</button>
 </div>
 
-
-<h2>Search by author:</h2>
-<input id="searchBooksByAuthor" type="text"></input> <button id="submitButtonAgain" ng-click="searchBooksByAuthor()">Submit</button>
-
-<div ng-repeat="book in booksbyauthor">
-    <img ng-src='{{book.image}}'></img>
-    <h1>{{book.title}}</h1>
-    <h3>{{book.authors}}</h3>
-    <<button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
+<div class="card-columns">        
+<div ng-repeat="book in booksbytitle" class="card" class="card border-secondary mb-3" style="width: 20rem;">
+    <img class="card-img-top" ng-src='{{book.image}}'></img>
+    <h4 class="card-header">{{book.title}}</h4>
+    <div class="card-body">            
+    <p class="card-text">{{book.authors}}</p>
+    <button class="btn btn-dark" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
+</div>
+</div>
 </div>
 
-<h2>Search by publisher:</h2>
+<div class="searchInput">        
+<h2 class="h2">Search by author:</h2>
+<input class="searchInput" id="searchBooksByAuthor" type="text"></input> 
+<button class="btn btn-dark" id="submitButtonAgain" ng-click="searchBooksByAuthor()">Submit</button>
+</div>
+
+<div class="card-columns">                
+<div ng-repeat="book in booksbyauthor" class="card" class="card border-secondary mb-3" style="width: 20rem;">
+    <img class="card-img-top" ng-src='{{book.image}}'></img>
+    <h1 class="card-header">{{book.title}}</h1>
+    <div class="card-body">                        
+    <h3 class="card-text">{{book.authors}}</h3>
+    <button class="btn btn-dark" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
+</div>
+</div>
+</div>
+
+<!-- <h2>Search by publisher:</h2>
 <input id="searchBooksByPublisher" type="text"></input> <button id="submitButtonAgainAgain" ng-click="searchBooksByPublisher()">Submit</button>
 
 <div ng-repeat="book in booksbypublisher">
     <img ng-src='{{book.image}}'></img>
     <h1>{{book.title}}</h1>
     <h3>{{book.authors}}</h3>
-    <button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
-</div>
+    <button class="btn btn-outline-dark" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendUserBooks(book)">To-Read</button>
+</div> -->

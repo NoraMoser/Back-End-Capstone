@@ -6,7 +6,9 @@ console.log('statistics.ctrl');
 app.controller('statisticsCtrl', function($routeParams, $scope, libraryFactory, userFactory, $route) {
 
     $scope.highrate = [];
-
+    $scope.to_buy = {
+        to_buy: "true",
+    };
     const getHigherRatedBooks = function () {
         libraryFactory.getToRead()
         .then((userbooks) => {
@@ -19,6 +21,17 @@ app.controller('statisticsCtrl', function($routeParams, $scope, libraryFactory, 
             $route.reload();
         });
     };
+
+    $scope.sendToBuyBooks = function(id, to_buy) {
+        let newBuy = JSON.stringify(to_buy);
+        console.log("to_buy", to_buy);
+        
+
+        $scope.to_buy.to_buy = newBuy;
+        libraryFactory.editUserBooks(id, $scope.to_buy);
+    };
+
+
     getHigherRatedBooks();
 
 });

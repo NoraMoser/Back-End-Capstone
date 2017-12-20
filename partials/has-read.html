@@ -8,22 +8,28 @@
     
 </ul>
 
-<h1>Completed Books</h1>
+<h1 class="header">Completed Books</h1>
 
-
-<div ng-repeat="book in toread" ng-if="book.has_read == true">
-    <img ng-src='{{book.cover_photo}}'></img>
-    <h1>{{book.title}}</h1>
-    <h3>{{book.author}}</h3>
-    <button class="{{book.id}}" ng-click="deleteBooks(book.id)">Delete</button>
+<div class="card-deck important">
+        
+<div ng-repeat="book in toread" ng-if="book.has_read == true" class="card" class="card border-secondary mb-3" style="width: 5rem;">
+    <div>
+    <img class="card-img-top" ng-src='{{book.cover_photo}}'></img>
+    <h4 class="card-header">{{book.title}}</h4>
+    <div class="card-body">            
+    <p class="card-text">{{book.author}}</p>
+    <button class="btn btn-dark" class="{{book.id}}" ng-click="deleteBooks(book.id)">Delete</button>
     <div ng-app="LibraryApp">
     <div ng-controller="listCtrl as ctrl">
         <div ng-repeat="n in ctrl.getStarArray()" ng-class="ctrl.getClass(n)" ng-click="ctrl.setClass($event,n)"></div>
         <p>
             You have chosen {{ctrl.selStars}} stars
         </p>
-        <button ng-click="changeUserRating(book.id, ctrl.selStars)">Finish</button>
+        <button class="btn btn-dark" ng-click="changeUserRating(book.id, ctrl.selStars)">Finish</button>
         </div>
+    </div>
     </div>
     
 </div>
+</div>
+

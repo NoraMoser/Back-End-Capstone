@@ -42,6 +42,10 @@ app.config(($routeProvider) => {
         templateUrl: 'partials/statistics.html',
         controller: 'statisticsCtrl'
     })
+    .when('/tobuy', {
+        templateUrl: 'partials/tobuy.html',
+        controller: 'statisticsCtrl'
+    })
     
     .otherwise('/');
 });

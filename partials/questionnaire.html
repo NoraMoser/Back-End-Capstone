@@ -4,15 +4,20 @@
     <li ng-show='!isUserAdmin'><a ng-href="#!/to-read">To-Read List</a></li>
     <li ng-show='!isUserAdmin'><a ng-href="#!/has-read">Already Read List</a></li>
     <li ng-show='isUserAdmin'><a ng-href="#!/statistics">Statistics</a></li>
+    <li ng-show='isUserAdmin'><a ng-href="#!/tobuy">To Buy</a></li>
+    <li ng-show='isUserAdmin'><a ng-href="#!/form">Sign Up</a></li>
+    
+    
     
     
     
 </ul>
 
 <div ng-show='!isUserAdmin'>
-<h1> Questionnaire</h1>
+<h1 class="header"> Questionnaire</h1>
 
-<div> 
+
+<div class="questionnaire"> 
     <div ng-repeat='question in questions' class="form-group" >
         <label for="sel1">{{question.questions}}</label>
         <select class="form-control" 
@@ -24,24 +29,28 @@
     </div>
 
 <!-- <button ng-click='sendResponses()'>Finish</button> -->
-<button ng-click='getRecommendedBooks()'>Get Recommendations</button>
+<button class="btn btn-dark" class="header" ng-click='getRecommendedBooks()'>Get Recommendations</button>
 <!-- <button ng-click='checkRecommendations()'>Check Recommendations</button> -->
 
 
-
-    <div ng-repeat='book in recommendations'>
+<div class="card-deck alsoImportant"> 
+    <div ng-repeat='book in recommendations' class="card" >
         <!-- <div ng-repeat="book in recommendation"> -->
-            <img ng-src='{{book.cover_photo}}'></img>
-            <h1>{{book.book_title}}</h1>
-            <h3>{{book.author}}</h3>
-        <!-- </div> -->
-        <button class="btn btn-primary" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendQuestionnaireBooks(book)">To-Read</button>
+            <img class="card-img-top" ng-src='{{book.cover_photo}}' alt="Card image cap"></img>
+            <div class="card-body">                    
+            <h4 class="card-title">{{book.book_title}}</h4>
+            <p class="card-text">{{book.author}}</p>
+        </div>
+        <button class="btn btn-dark" class="{{book.id}}" ng-controller="listCtrl" ng-click="sendQuestionnaireBooks(book)">To-Read</button>
     </div>
 </div>
 </div>
+</div>
+
 
 <div ng-show='isUserAdmin'>
-    <h1>Welcome!</h1>
+
+    <h1 class="header">Welcome!</h1>
 </div>
 
 <!-- <input id="getRecommendations" type="text"></input>

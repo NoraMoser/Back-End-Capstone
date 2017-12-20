@@ -22,7 +22,7 @@ app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFa
     $scope.sendUserBooks = function(book) {
         book.cover_photo = book.image;
         book.author = book.authors;
-        book.rating = 'NULL';
+        // book.rating = 'NULL';
         book.has_read = 'false';
         book.book_title = book.title;
         book.user_id = userFactory.getCurrentUser();
@@ -41,6 +41,8 @@ app.controller('listCtrl', function($routeParams, $scope, libraryFactory, userFa
         book.has_read = 'true';
         libraryFactory.sendBooks(book);
     };
+
+    
 
     this.selStars = 0; // initial stars count
     this.maxStars = 5;

@@ -2,16 +2,25 @@
 <ul>
         <li><a ng-href="#!/form">Sign Up</a></li>
         <li><a ng-href="#!/statistics">Statistics</a></li>
+        <li><a ng-href="#!/tobuy">To Buy</a></li>
         <li><a ng-href="#!/" ng-click="logOut()">Log Out</a></li>
         
 </ul>
 
-<h1>Statistics</h1>
+<h1 class="header">Statistics</h1>
 
-<div ng-repeat="book in highrate" ng-if="book.rating > 4">
-    <img ng-src='{{book.cover_photo}}'></img>
-    <h1>{{book.title}}</h1>
-    <h3>{{book.author}}</h3>
-    <button class="{{book.id}}" ng-click="deleteBooks(book.id)">Delete</button>
-    
+<div class="card-deck important">
+    <div ng-repeat="book in highrate" ng-if="book.rating > 4" class="card" class="card border-secondary mb-3" style="width: 20rem;">
+        <img class="card-img-top" ng-src='{{book.cover_photo}}'></img>
+        <h4 class="card-header">{{book.title}}</h4>
+        <div class="card-body">            
+            <p class="card-text"> {{book.author}}</p>
+            <button class="btn btn-dark" class="{{book.id}}" ng-click='sendToBuyBooks(book.id, true)'>Want To Buy</button>
+            <button class="btn btn-dark" class="{{book.id}}" ng-click="deleteBooks(book.id)">Delete</button>
+            
+        </div>
+        
+    </div>
 </div>
+
+    
